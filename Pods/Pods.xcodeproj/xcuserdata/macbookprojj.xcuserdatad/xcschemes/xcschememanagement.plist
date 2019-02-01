@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>BoringSSL.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Cache.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Firebase.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,7 +39,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FirebaseDatabase.xcscheme</key>
+		<key>FirebaseFirestore-gRPCCertificates-Firestore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FirebaseFirestore.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -59,7 +74,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Imaginary.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Social Hub.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -79,7 +104,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>gRPC-C++.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>gRPC-Core.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>leveldb-library.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>lottie-ios.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

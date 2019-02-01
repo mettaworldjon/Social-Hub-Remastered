@@ -33,6 +33,7 @@ class SignUpController: UIViewController, UITextFieldDelegate {
     
     // Register Info
     fileprivate let name = TextFieldTheme("Full Name", UIColor.Theme.gray_19, TextfieldType.normal)
+    fileprivate let username = TextFieldTheme("Username", UIColor.Theme.gray_19, TextfieldType.normal)
     fileprivate let email = TextFieldTheme("Email", UIColor.Theme.gray_19, TextfieldType.normal)
     fileprivate let password = TextFieldTheme("Password", UIColor.Theme.gray_19, TextfieldType.password)
     
@@ -95,12 +96,13 @@ class SignUpController: UIViewController, UITextFieldDelegate {
     
     // Register Stack - Configuration
     fileprivate func setUpRegisterStack() {
-        registerStack.addViewsToStack([name,email,password])
+        registerStack.addViewsToStack([name,email,username,password])
         registerStack.spacing = 10
         registerStack.axis = .vertical
         view.addSubview(registerStack)
         NSLayoutConstraint.activate([
             name.heightAnchor.constraint(equalToConstant: 40),
+            username.heightAnchor.constraint(equalToConstant: 40),
             email.heightAnchor.constraint(equalToConstant: 40),
             password.heightAnchor.constraint(equalToConstant: 40),
             registerStack.topAnchor.constraint(equalTo: profileBtn.bottomAnchor, constant: 30),
@@ -154,34 +156,67 @@ class SignUpController: UIViewController, UITextFieldDelegate {
         config.singlePhotoConfig()
     }
     
+    fileprivate func startRemovalAnimations(completion:@escaping () -> ()) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.profileBtn.alpha = 0
+            self.photoIcon.alpha = 0
+            self.registerStack.alpha = 0
+            self.signUpBtn.alpha = 0
+            self.terms.alpha = 0
+            
+            self.profileBtn.layoutIfNeeded()
+            self.photoIcon.layoutIfNeeded()
+            self.registerStack.layoutIfNeeded()
+            self.signUpBtn.layoutIfNeeded()
+            self.terms.layoutIfNeeded()
+        }) { (_) in
+            UIView.animate(withDuration: 0.2, animations: {
+                self.navigationController?.navigationBar.alpha = 0
+                self.navigationController?.navigationBar.layoutIfNeeded()
+            }, completion: { (_) in
+                completion()
+            })
+        }
+    }
+    
     // Delegates - Configuration
     fileprivate func delegates() {
         email.getTextField().delegate = self
+        username.getTextField().delegate = self
         name.getTextField().delegate = self
         password.getTextField().delegate = self
     }
     
     // Handlers
     @objc fileprivate func handleSignUp() {
-        let name = self.name.getText()
+        let fullname = self.name.getText()
         let email = self.email.getText()
         let password = self.password.getText()
+        let username = self.username.getText()
         guard let image = self.profileBtn.imageView?.image else { return }
         view.endEditing(true)
         self.signUpBtn.setTitle(nil, for: .normal)
         self.signUpBtn.isEnabled = false
         let loader = UIViewController.displaySpinner(onView: self.signUpBtn)
-        if !name.validText() && (email.validEmail()) && (password.validPassword()) {
-            Auth.auth().signUpUser(email, name, password, image) { (value) in
-                if value {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        if !fullname.validText() && (email.validEmail()) && (password.validPassword()) {
+            Auth.auth().createUserAccount(email: email, password: password, username: username, fullname: fullname, image: image) { (value, user) in
+                if value, let user = user {
                     print("You a bad man!")
-                    self.signUpBtn.isEnabled = false
-                    UIViewController.removeSpinner(spinner: loader)
+                    self.enableUI(loader, nil, nil, false)
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.terms.transform = CGAffineTransform(translationX: 0, y: 30)
+                    }, completion: { (_) in
+                        self.completeLoginSignUp(300, 0, completionBlock: {
+                            self.startRemovalAnimations(completion: {
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                appDelegate.switchToMainViewController(user: user)
+                            })
+                        })
+                    })
                 } else {
                     print("Try try again!")
-                    self.signUpBtn.isEnabled = true
-                    UIViewController.removeSpinner(spinner: loader)
-                    self.signUpBtn.setTitle("Create an Account", for: .normal)
+                    self.enableUI(loader, self.signUpBtn, "Create an Account", true)
                 }
             }
         } else {
@@ -189,6 +224,7 @@ class SignUpController: UIViewController, UITextFieldDelegate {
             self.signUpBtn.isEnabled = true
             UIViewController.removeSpinner(spinner: loader)
             self.signUpBtn.setTitle("Create an Account", for: .normal)
+            UIApplication.shared.endIgnoringInteractionEvents()
         }
     }
     
@@ -214,11 +250,11 @@ class SignUpController: UIViewController, UITextFieldDelegate {
     ////////////////// Text Field //////////////////
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-            self.profileBtn.transform = CGAffineTransform(translationX: 0, y: -15)
-            self.photoIcon.transform = CGAffineTransform(translationX: 0, y: -15)
-            self.registerStack.transform = CGAffineTransform(translationX: 0, y: -15)
-            self.signUpBtn.transform = CGAffineTransform(translationX: 0, y: -15)
-            self.terms.transform = CGAffineTransform(translationX: 0, y: -20)
+            self.profileBtn.transform = CGAffineTransform(translationX: 0, y: -45)
+            self.photoIcon.transform = CGAffineTransform(translationX: 0, y: -45)
+            self.registerStack.transform = CGAffineTransform(translationX: 0, y: -55)
+            self.signUpBtn.transform = CGAffineTransform(translationX: 0, y: -55)
+            self.terms.transform = CGAffineTransform(translationX: 0, y: -45)
             self.view.layoutIfNeeded()
         }, completion: nil)
     }

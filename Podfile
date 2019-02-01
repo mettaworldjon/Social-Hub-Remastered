@@ -8,8 +8,9 @@ target 'Social Hub' do
   # Pods for Social Hub
   pod 'YPImagePicker'
   pod 'Firebase/Core'
+  pod 'FirebaseFirestore', :inhibit_warnings => true
   pod 'Firebase/Auth'
-  pod 'Firebase/Database'
   pod 'Firebase/Storage'
-  
+  pod 'lottie-ios'
+  pod 'Imaginary'
 end

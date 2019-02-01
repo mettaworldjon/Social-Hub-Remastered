@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignInController: UIViewController, UITextFieldDelegate {
     
@@ -101,6 +102,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
         registerStack.addViewsToStack([email,password])
         registerStack.axis = .vertical
         registerStack.spacing = 10
+        signInBtn.addTarget(self, action: #selector(attemptSignIn), for: .touchUpInside)
         view.addSubview(registerStack)
         view.addSubview(signInBtn)
         view.addSubview(forgotBtn)
@@ -112,7 +114,6 @@ class SignInController: UIViewController, UITextFieldDelegate {
             registerStack.topAnchor.constraint(equalTo: subTitle.bottomAnchor, constant: 75),
             signInBtn.widthAnchor.constraint(equalTo: registerStack.widthAnchor),
             signInBtn.heightAnchor.constraint(equalToConstant: 48),
-            
             signInBtn.topAnchor.constraint(equalTo: registerStack.bottomAnchor, constant: 20),
             signInBtn.centerXAnchor.constraint(equalTo: registerStack.centerXAnchor),
             forgotBtn.heightAnchor.constraint(equalToConstant: 15),
@@ -133,7 +134,59 @@ class SignInController: UIViewController, UITextFieldDelegate {
             ])
     }
     
+    fileprivate func startCompletionAnimation(completion:@escaping () -> ()) {
+        UIView.animate(withDuration: 0.5, delay: 2, animations: {
+            self.navigationController?.navigationBar.alpha = 0
+            self.navigationController?.navigationBar.layoutIfNeeded()
+        }) { (_) in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.logo.alpha = 0
+                self.mainTitle.alpha = 0
+                self.subTitle.alpha = 0
+                self.registerStack.alpha = 0
+                self.signInBtn.alpha = 0
+                self.forgotBtn.alpha = 0
+                
+                self.logo.layoutIfNeeded()
+                self.mainTitle.layoutIfNeeded()
+                self.subTitle.layoutIfNeeded()
+                self.registerStack.layoutIfNeeded()
+                self.signInBtn.layoutIfNeeded()
+                self.forgotBtn.layoutIfNeeded()
+            }, completion: { (_) in
+                completion()
+            })
+        }
+    }
+    
     // Handlers
+    @objc fileprivate func attemptSignIn() {
+        let email = self.email.getText()
+        let password = self.password.getText()
+        view.endEditing(true)
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        self.signInBtn.setTitle(nil, for: .normal)
+        let loader = UIViewController.displaySpinner(onView: self.signInBtn)
+        if email.validEmail() && password.validPassword() {
+            Auth.auth().signInUser(email: email, password: password) { (boolVale, user) in
+                if boolVale, let user = user {
+                    print("User Signed In")
+                    self.enableUI(loader, self.signInBtn, nil, false, completionBlock: {
+                        self.startCompletionAnimation {
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.switchToMainViewController(user: user)
+                        }
+                    })
+                } else {
+                    print("Invalid something")
+                    self.enableUI(loader, self.signInBtn, "Login", true)
+                }
+            }
+        } else {
+            self.enableUI(loader, self.signInBtn, "Login", true)
+        }
+    }
+    
     @objc fileprivate func removeKeyboard() {
         view.endEditing(true)
     }
@@ -153,7 +206,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
         }, completion: nil)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.registerStack.transform = .identity
             self.signInBtn.transform = .identity
@@ -162,9 +215,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
         }, completion: nil)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("Fuck off!!")
-    }
+    
     
 }
 

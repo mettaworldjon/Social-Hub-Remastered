@@ -21,10 +21,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
         projectDefaults()
-        window?.rootViewController = SignInController()
+        if let uid = Auth.auth().currentUser?.uid {
+            window?.rootViewController = MainTabBarController(uid: uid)
+        } else {
+            window?.rootViewController = SignInController()
+        }
         window?.makeKeyAndVisible()
         return true
     }
+    
+    public func switchToMainViewController() {
+//        self.window?.rootViewController = main
+    }
+    
+    public func switchToMainViewController(user:User) {
+        UIApplication.shared.endIgnoringInteractionEvents()
+        self.window?.rootViewController = MainTabBarController(user:user)
+    }
+    
+    public func switchToSignUpViewController() {
+        window?.rootViewController = SignInController()
+    }
+
     
     func projectDefaults() {
         UITextField.appearance().tintColor = UIColor("59B58D")
