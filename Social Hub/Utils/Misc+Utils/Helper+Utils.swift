@@ -57,11 +57,12 @@ extension UIViewController {
     func enableUI(_ view:UIView, _ btn:UIButton?, _ text:String?, _ value:Bool,completionBlock: (() -> ())? = nil) {
         if value {
             UIViewController.removeSpinner(spinner: view)
-            btn?.setTitle("Login", for: .normal)
+            btn?.setTitle(text, for: .normal)
+            btn?.isEnabled = true
             UIApplication.shared.endIgnoringInteractionEvents()
         } else {
             UIViewController.removeSpinner(spinner: view)
-            btn?.setTitle("Login", for: .normal)
+            btn?.setTitle(text, for: .normal)
             self.completeLoginSignUp(250, 0) {
                 guard let completion = completionBlock else {return}
                 completion()
@@ -97,6 +98,36 @@ extension UIViewController {
             animationView.layoutIfNeeded()
         }, completion: nil)
     }
+    
+//    static func checkIfCurrentUser(user:User) -> Bool {
+//        guard let globalUser = globalUser else { return false }
+//        if user.uid == globalUser.uid {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+    
+    static func loadProfileImage(_ user: User, _ profileImage:UIImageView?, _ profileImageBtn:UIButton?) {
+        guard let url = URL(string: user.profileImageUrl) else { return }
+        profileImage?.setImage(url: url)
+        profileImageBtn?.setImage(url: url)
+//        if let image = loadedProfileImage.image, let globalUser = globalUser {
+//            if globalUser.uid == user.uid {
+//                profileImage?.image = image
+//                profileImageBtn?.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+//            } else {
+//                guard let url = URL(string: user.profileImageUrl) else { return }
+//                profileImage?.setImage(url: url)
+//                profileImageBtn?.setImage(url: url)
+//            }
+//        } else {
+//            guard let url = URL(string: user.profileImageUrl) else { return }
+//            profileImage?.setImage(url: url)
+//            profileImageBtn?.setImage(url: url)
+//        }
+    }
+    
 }
 
 

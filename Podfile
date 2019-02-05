@@ -13,4 +13,5 @@ target 'Social Hub' do
   pod 'Firebase/Storage'
   pod 'lottie-ios'
   pod 'Imaginary'
+  pod 'KMPlaceholderTextView', '~> 1.4.0'
 end

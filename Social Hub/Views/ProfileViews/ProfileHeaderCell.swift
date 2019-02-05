@@ -26,8 +26,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         self.profileType.text = user.profileType
         self.profileBio.text = user.bio
         self.profileWebsite.text = user.website
-        guard let url = URL(string: user.profileImageUrl) else { return }
-        self.profileImage.setImage(url: url)
+        UIViewController.loadProfileImage(user, self.profileImage, nil)
     }
     
     // Profile - Image
@@ -228,7 +227,6 @@ class ProfileHeaderCell: UICollectionViewCell {
             bottomLine.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bottomLine.topAnchor.constraint(equalTo: statStackView.bottomAnchor, constant: 15)
             ])
-        
     }
     
     @objc fileprivate func openWebPage() {

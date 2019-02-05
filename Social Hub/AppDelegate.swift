@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     public func switchToMainViewController(user:User) {
-        UIApplication.shared.endIgnoringInteractionEvents()
+//        UIApplication.shared.endIgnoringInteractionEvents()
         self.window?.rootViewController = MainTabBarController(user:user)
     }
     
@@ -45,6 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func projectDefaults() {
+        UITabBar.appearance().barTintColor = UIColor(red:0.96, green:0.97, blue:0.96, alpha:1.00)
+        UITabBar.appearance().tintColor = UIColor(red:0.27, green:0.32, blue:0.33, alpha:1.00)
         UITextField.appearance().tintColor = UIColor("59B58D")
         UINavigationBar.appearance().tintColor = UIColor("59B58D")
         UINavigationBar.appearance().barTintColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:0.95)

@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Firebase
+import Imaginary
+
+
 
 class ProfileController: ContentCollectionController, UICollectionViewDelegateFlowLayout {
     
@@ -24,16 +28,47 @@ class ProfileController: ContentCollectionController, UICollectionViewDelegateFl
         self.collectionView.reloadData()
     }
     
+    // ActionSheet - Configuration
+    lazy var actionSheet:UIAlertController = {
+        let actionS = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
+        actionS.view.tintColor = UIColor.Theme.baseColor
+        let menuAction = UIAlertAction(title: "Account Settings", style: .default, handler: { (_) in
+            guard let user = self.user else { return }
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+            let account = UserAccountController()
+            account.title = "Account"
+            account.setUser(user:user)
+            self.navigationController?.pushViewController(account, animated: true)
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let logout = UIAlertAction(title: "Logout", style: .destructive, handler: { (_) in
+            print("I'm out!")
+        })
+        actionS.addAction(menuAction)
+        actionS.addAction(logout)
+        actionS.addAction(cancel)
+        return actionS
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNav()
         configureCollection()
+        
+//        self.navigationController?.tabBarItem.image = #imageLiteral(resourceName: "profile-unselected")
+//        self.navigationController?.tabBarItem.title = "Profile"
     }
     
     // Nav - Configurations
     fileprivate func configureNav() {
-        let menuBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: nil)
+        let menuBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "menu"), style: .plain, target: self, action: #selector(launchActionSheet))
         self.navigationItem.rightBarButtonItem = menuBtn
+    }
+    
+    // ActionSheet - Method
+    @objc fileprivate func launchActionSheet() {
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
     // Collection - Configurations

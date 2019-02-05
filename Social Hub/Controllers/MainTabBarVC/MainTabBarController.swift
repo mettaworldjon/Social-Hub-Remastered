@@ -11,42 +11,41 @@ import Firebase
 
 class MainTabBarController: UITabBarController {
     
-    convenience init(uid:String) {
-        self.init()
-        uiDefaults()
+    // Fetch Current User - Method
+    // Places into Global User for one time fetching
+    // Places User into appropriate controller
+    fileprivate func fetchCurrentUser(_ uid: String) {
         Firestore.firestore().getUserFromUID(uid: uid) { (user) in
             guard let user = user else { return }
             self.profile.setUser(user: user)
         }
-        self.configTab(#imageLiteral(resourceName: "profile-unselected"), profilePage, "Profile")
-        self.configTab(#imageLiteral(resourceName: "profile-unselected"), profilePage1, "Profile")
-        viewControllers = [profilePage,profilePage1]
+    }
+    
+    // Add Title into Tab Bar
+    fileprivate func configTab( _ image:UIImage,_ nav:UINavigationController, _ title:String) {
+        nav.tabBarItem.image = image
+        nav.tabBarItem.title = title
+    }
+    
+    convenience init(uid:String) {
+        self.init()
+        fetchCurrentUser(uid)
+        viewControllers = [profilePage,profilePage1] // Tab Bars
     }
     
     
     
     convenience init(user:User) {
         self.init()
-        uiDefaults()
         self.profile.setUser(user: user)
-        self.configTab(#imageLiteral(resourceName: "profile-unselected"), profilePage, "Profile")
-        self.configTab(#imageLiteral(resourceName: "profile-unselected"), profilePage1, "Profile")
         viewControllers = [profilePage,profilePage1]
     }
     
-    fileprivate func uiDefaults() {
-        self.tabBar.barTintColor = UIColor(red:0.96, green:0.97, blue:0.96, alpha:1.00)
-        self.tabBar.tintColor = UIColor(red:0.27, green:0.32, blue:0.33, alpha:1.00)
-    }
     
     fileprivate let profile = ProfileController(UICollectionViewLayout.getLayout(.vertical))
     fileprivate lazy var profilePage = UINavigationController(rootViewController: self.profile)
-    
     fileprivate let profilePage1 = UINavigationController(rootViewController: ProfileController(UICollectionViewLayout.getLayout(.vertical)))
     
-    fileprivate func configTab( _ image:UIImage,_ nav:UINavigationController, _ title:String) {
-        nav.tabBarItem.image = image
-        nav.tabBarItem.title = title
-    }
+    
     
 }

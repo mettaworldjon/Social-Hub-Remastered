@@ -100,6 +100,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.1)
   - Imaginary (4.2.0):
     - Cache (~> 5.0)
+  - KMPlaceholderTextView (1.4.0)
   - leveldb-library (1.20)
   - lottie-ios (2.5.2)
   - nanopb (0.3.901):
@@ -120,6 +121,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestore
   - Imaginary
+  - KMPlaceholderTextView (~> 1.4.0)
   - lottie-ios
   - YPImagePicker
 
@@ -141,6 +143,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - Imaginary
+    - KMPlaceholderTextView
     - leveldb-library
     - lottie-ios
     - nanopb
@@ -166,6 +169,7 @@ SPEC CHECKSUMS:
   gRPC-Core: f4836515817c0eb479aeeb9cc27c91c4ba62a9f6
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
+  KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -174,6 +178,6 @@ SPEC CHECKSUMS:
   SteviaLayout: dd74d1abd127bbf0ce346ac9430441684fe427d0
   YPImagePicker: 26d5bf7bfe1cffd1c5eedea3ac60422b314e2a42
 
-PODFILE CHECKSUM: 45e5618410eb2da6c7a1dd55842e858a6d3f6eb3
+PODFILE CHECKSUM: 255b228261d2fb6d62a4d986a732a954f8408213
 
 COCOAPODS: 1.6.0.beta.1

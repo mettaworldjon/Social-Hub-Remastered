@@ -24,6 +24,11 @@
 		F24D46F121FA557A00BB982D /* Button+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D46F021FA557A00BB982D /* Button+Theme.swift */; };
 		F24D46F321FA76F600BB982D /* ButtonCustomLayout+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D46F221FA76F600BB982D /* ButtonCustomLayout+Theme.swift */; };
 		F24D46F521FB64EB00BB982D /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24D46F421FB64EB00BB982D /* SignInController.swift */; };
+		F2970E8F2208B2BA00A9DB62 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2970E8E2208B2BA00A9DB62 /* UserAccountController.swift */; };
+		F2970E912208B3C000A9DB62 /* UserAccountViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2970E902208B3C000A9DB62 /* UserAccountViewCell.swift */; };
+		F2970E932208BAA700A9DB62 /* TableViewTitleSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2970E922208BAA700A9DB62 /* TableViewTitleSpace.swift */; };
+		F2970E982208E11A00A9DB62 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2970E972208E11A00A9DB62 /* EditProfileController.swift */; };
+		F2970E9A2208E67400A9DB62 /* EditProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2970E992208E67400A9DB62 /* EditProfileViewCell.swift */; };
 		F2CC9D7521FB67E70079E892 /* Helper+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CC9D7421FB67E70079E892 /* Helper+Utils.swift */; };
 		F2CC9D7721FB6AC50079E892 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CC9D7621FB6AC50079E892 /* SignUpController.swift */; };
 		F2F9116921FF43BC00D48AD1 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F9116821FF43BC00D48AD1 /* ProfileController.swift */; };
@@ -57,6 +62,11 @@
 		F24D46F021FA557A00BB982D /* Button+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Theme.swift"; sourceTree = "<group>"; };
 		F24D46F221FA76F600BB982D /* ButtonCustomLayout+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonCustomLayout+Theme.swift"; sourceTree = "<group>"; };
 		F24D46F421FB64EB00BB982D /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		F2970E8E2208B2BA00A9DB62 /* UserAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountController.swift; sourceTree = "<group>"; };
+		F2970E902208B3C000A9DB62 /* UserAccountViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewCell.swift; sourceTree = "<group>"; };
+		F2970E922208BAA700A9DB62 /* TableViewTitleSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewTitleSpace.swift; sourceTree = "<group>"; };
+		F2970E972208E11A00A9DB62 /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		F2970E992208E67400A9DB62 /* EditProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewCell.swift; sourceTree = "<group>"; };
 		F2CC9D7421FB67E70079E892 /* Helper+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Utils.swift"; sourceTree = "<group>"; };
 		F2CC9D7621FB6AC50079E892 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		F2F9116821FF43BC00D48AD1 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -178,6 +188,8 @@
 				F28C058E22040FF60033C97B /* MainTabBarVC */,
 				F28C058D22040C3F0033C97B /* RegisterVC */,
 				F28C058F220410140033C97B /* ProfileVC */,
+				F2970E942208DF9600A9DB62 /* UserAccountVC */,
+				F2970E9B2209F4CE00A9DB62 /* EditProfileVC */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -221,7 +233,10 @@
 		F28C05912204122E0033C97B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2970E962208DFBB00A9DB62 /* TableViewTitleSpace */,
 				F28C05922204124A0033C97B /* ProfileViews */,
+				F2970E952208DFA500A9DB62 /* UserAccountViews */,
+				F2970E9C2209F4F600A9DB62 /* EditProfileViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,6 +248,46 @@
 				F2F9116C21FF471F00D48AD1 /* ProfilePostCell.swift */,
 			);
 			path = ProfileViews;
+			sourceTree = "<group>";
+		};
+		F2970E942208DF9600A9DB62 /* UserAccountVC */ = {
+			isa = PBXGroup;
+			children = (
+				F2970E8E2208B2BA00A9DB62 /* UserAccountController.swift */,
+			);
+			path = UserAccountVC;
+			sourceTree = "<group>";
+		};
+		F2970E952208DFA500A9DB62 /* UserAccountViews */ = {
+			isa = PBXGroup;
+			children = (
+				F2970E902208B3C000A9DB62 /* UserAccountViewCell.swift */,
+			);
+			path = UserAccountViews;
+			sourceTree = "<group>";
+		};
+		F2970E962208DFBB00A9DB62 /* TableViewTitleSpace */ = {
+			isa = PBXGroup;
+			children = (
+				F2970E922208BAA700A9DB62 /* TableViewTitleSpace.swift */,
+			);
+			path = TableViewTitleSpace;
+			sourceTree = "<group>";
+		};
+		F2970E9B2209F4CE00A9DB62 /* EditProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				F2970E972208E11A00A9DB62 /* EditProfileController.swift */,
+			);
+			path = EditProfileVC;
+			sourceTree = "<group>";
+		};
+		F2970E9C2209F4F600A9DB62 /* EditProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				F2970E992208E67400A9DB62 /* EditProfileViewCell.swift */,
+			);
+			path = EditProfileViews;
 			sourceTree = "<group>";
 		};
 		F2F9116721FF436C00D48AD1 /* Archives */ = {
@@ -372,6 +427,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
+				"${BUILT_PRODUCTS_DIR}/KMPlaceholderTextView/KMPlaceholderTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
@@ -391,6 +447,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPlaceholderTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
@@ -460,21 +517,26 @@
 				F2FA714421FBE49B00DCD05A /* User.swift in Sources */,
 				F2FA714221FBDCE300DCD05A /* Firebase+Utils.swift in Sources */,
 				F24D46DC21FA381E00BB982D /* Social_Hub.xcdatamodeld in Sources */,
+				F2970E912208B3C000A9DB62 /* UserAccountViewCell.swift in Sources */,
 				F24D46F121FA557A00BB982D /* Button+Theme.swift in Sources */,
 				F2F9116B21FF46C800D48AD1 /* ProfileHeaderCell.swift in Sources */,
 				F20B4C6E21FE7BE4005A0784 /* ProfilePostView+Archive.swift in Sources */,
+				F2970E8F2208B2BA00A9DB62 /* UserAccountController.swift in Sources */,
 				F20B4C6C21FE7880005A0784 /* ProfileHeaderView+Archive.swift in Sources */,
 				F2CC9D7521FB67E70079E892 /* Helper+Utils.swift in Sources */,
 				F2F9116D21FF471F00D48AD1 /* ProfilePostCell.swift in Sources */,
 				F20B4C6821FE54B1005A0784 /* ContentCollectionController.swift in Sources */,
 				F20B4C6621FE51EF005A0784 /* ProfileController+Archive.swift in Sources */,
 				F24D46D421FA381E00BB982D /* AppDelegate.swift in Sources */,
+				F2970E9A2208E67400A9DB62 /* EditProfileViewCell.swift in Sources */,
 				F24D46F321FA76F600BB982D /* ButtonCustomLayout+Theme.swift in Sources */,
 				F2CC9D7721FB6AC50079E892 /* SignUpController.swift in Sources */,
+				F2970E932208BAA700A9DB62 /* TableViewTitleSpace.swift in Sources */,
 				F24D46EB21FA3B7F00BB982D /* Colors+Theme.swift in Sources */,
 				F24D46E921FA3A7800BB982D /* TextField+Theme.swift in Sources */,
 				F20B4C6421FE50DE005A0784 /* MainTabBarController.swift in Sources */,
 				F2F9116921FF43BC00D48AD1 /* ProfileController.swift in Sources */,
+				F2970E982208E11A00A9DB62 /* EditProfileController.swift in Sources */,
 				F24D46F521FB64EB00BB982D /* SignInController.swift in Sources */,
 				F2FA713B21FBD42100DCD05A /* Photo+Utils.swift in Sources */,
 				F24D46ED21FA3BFD00BB982D /* Color+Hex.swift in Sources */,
