@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import KMPlaceholderTextView
-import Imaginary
+import RSKGrowingTextView
 
 class EditProfileViewCell: UITableViewCell {
     
@@ -33,10 +32,10 @@ class EditProfileViewCell: UITableViewCell {
         }
     }
     
-    private let profileImage:UIImageView = {
-        let btn = UIImageView()
+    private let profileImage:UIButton = {
+        let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.image = UIImage(named: "100px")?.withRenderingMode(.alwaysOriginal)
+        btn.setImage(UIImage(named: "100px")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.heightAnchor.constraint(equalToConstant: 100).isActive = true
         btn.widthAnchor.constraint(equalToConstant: 100).isActive = true
         btn.layer.cornerRadius = 50
@@ -71,12 +70,13 @@ class EditProfileViewCell: UITableViewCell {
         return label
     }()
     
-    private let bioTextField:KMPlaceholderTextView = {
-        let label = KMPlaceholderTextView()
+    private let bioTextField:RSKGrowingTextView = {
+        let label = RSKGrowingTextView()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isScrollEnabled = false
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor.Theme.gray_79
+        label.maximumNumberOfLines = 4
         return label
     }()
     
@@ -87,21 +87,23 @@ class EditProfileViewCell: UITableViewCell {
     }
     
     fileprivate func setUpField(user:User, type:EditProfileType) {
-        label.text = type.rawValue
-        label.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1)
-        self.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-            ])
         if type == .bio{
-            bioTextField.placeholder = user.bio
+            label.text = type.rawValue
+            label.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1)
+            self.addSubview(label)
+            NSLayoutConstraint.activate([
+                label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+                label.topAnchor.constraint(equalTo: self.topAnchor, constant: 11)
+                ])
+            
+            bioTextField.placeholder = user.bio as NSString
             self.addSubview(bioTextField)
             NSLayoutConstraint.activate([
                 bioTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
-                bioTextField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                bioTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
                 bioTextField.widthAnchor.constraint(equalToConstant: 265),
-                bioTextField.heightAnchor.constraint(equalTo: label.heightAnchor, constant: 10)
+//                bioTextField.heightAnchor.constraint(equalTo: label.heightAnchor, constant: 10)
+                bioTextField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
                 ])
             let line = UIView()
             line.backgroundColor = UIColor(red:0.91, green:0.92, blue:0.92, alpha:1.00)
@@ -114,6 +116,13 @@ class EditProfileViewCell: UITableViewCell {
                 line.widthAnchor.constraint(equalToConstant: 260)
                 ])
         } else {
+            label.text = type.rawValue
+            label.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1)
+            self.addSubview(label)
+            NSLayoutConstraint.activate([
+                label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+                label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+                ])
             textField.attributedPlaceholder = NSAttributedString(string: userField(user: user, type: type), attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16),NSAttributedString.Key.foregroundColor:UIColor.Theme.gray_79])
             self.addSubview(textField)
             NSLayoutConstraint.activate([
@@ -159,7 +168,7 @@ class EditProfileViewCell: UITableViewCell {
     }
     
     fileprivate func setUpProfileImage(user:User) {
-        UIViewController.loadProfileImage(user, self.profileImage, nil)
+        UIViewController.loadProfileImage(user, nil, self.profileImage)
         self.addSubview(profileImage)
         NSLayoutConstraint.activate([
             profileImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),

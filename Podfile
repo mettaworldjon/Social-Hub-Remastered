@@ -12,6 +12,7 @@ target 'Social Hub' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'lottie-ios'
-  pod 'Imaginary'
-  pod 'KMPlaceholderTextView', '~> 1.4.0'
+#  pod 'Imaginary'
+  pod 'RSKGrowingTextView'
+  pod 'Kingfisher', '~> 5.0'
 end

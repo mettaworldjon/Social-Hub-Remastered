@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import Imaginary
 
 
 
@@ -57,6 +56,7 @@ class ProfileController: ContentCollectionController, UICollectionViewDelegateFl
         configureCollection()
         self.navigationController?.tabBarItem.image = #imageLiteral(resourceName: "profile-unselected")
         self.navigationController?.tabBarItem.title = "Profile"
+        self.navigationItem.title = ""
     }
     
     // Nav - Configurations

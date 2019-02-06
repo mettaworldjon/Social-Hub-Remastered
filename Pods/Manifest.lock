@@ -5,7 +5,6 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.2):
     - BoringSSL-GRPC/Interface (= 0.0.2)
   - BoringSSL-GRPC/Interface (0.0.2)
-  - Cache (5.2.0)
   - Firebase/Auth (5.16.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.3.0)
@@ -98,9 +97,7 @@ PODS:
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.17.0)
   - GTMSessionFetcher/Core (1.2.1)
-  - Imaginary (4.2.0):
-    - Cache (~> 5.0)
-  - KMPlaceholderTextView (1.4.0)
+  - Kingfisher (5.1.0)
   - leveldb-library (1.20)
   - lottie-ios (2.5.2)
   - nanopb (0.3.901):
@@ -110,6 +107,9 @@ PODS:
   - nanopb/encode (0.3.901)
   - Protobuf (3.6.1)
   - PryntTrimmerView (3.0.0)
+  - RSKGrowingTextView (4.0.5):
+    - RSKPlaceholderTextView (= 4.0.0)
+  - RSKPlaceholderTextView (4.0.0)
   - SteviaLayout (4.4.3)
   - YPImagePicker (3.5.3):
     - PryntTrimmerView (~> 3.0.0)
@@ -120,15 +120,14 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Storage
   - FirebaseFirestore
-  - Imaginary
-  - KMPlaceholderTextView (~> 1.4.0)
+  - Kingfisher (~> 5.0)
   - lottie-ios
+  - RSKGrowingTextView
   - YPImagePicker
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL-GRPC
-    - Cache
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -142,19 +141,19 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
-    - Imaginary
-    - KMPlaceholderTextView
+    - Kingfisher
     - leveldb-library
     - lottie-ios
     - nanopb
     - Protobuf
     - PryntTrimmerView
+    - RSKGrowingTextView
+    - RSKPlaceholderTextView
     - SteviaLayout
     - YPImagePicker
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
-  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
   FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
   FirebaseAuth: c9b3ff063c223d2841d97240af547ce511bce19a
@@ -168,16 +167,17 @@ SPEC CHECKSUMS:
   "gRPC-C++": e76441995900ac90e9bd98644ab4733f12521edf
   gRPC-Core: 4028031ed2c5267cca0d846c876d8046b1ecb9b6
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
-  KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
+  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
+  RSKGrowingTextView: aade5bc3ae2a202bd3d70674d605b76117034040
+  RSKPlaceholderTextView: 15f1dc1883e103ea605874b863f19ff6b08496d5
   SteviaLayout: ae5ee66101e03607a93c9b3773b84ab7ba7b3d17
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: 255b228261d2fb6d62a4d986a732a954f8408213
+PODFILE CHECKSUM: 001d603f0d9d4cfc67feecf6d3f63ae902f1a037
 
 COCOAPODS: 1.6.0.beta.1

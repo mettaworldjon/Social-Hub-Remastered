@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import Kingfisher
 
 // StackView Quick Add
 extension UIStackView {
@@ -108,24 +109,13 @@ extension UIViewController {
 //        }
 //    }
     
-    static func loadProfileImage(_ user: User, _ profileImage:UIImageView?, _ profileImageBtn:UIButton?) {
+    static func loadProfileImage(_ user: User, _ profileImage:UIImageView?, _ profileImageBtn:UIButton?, completion:(() -> ())? = nil) {
         guard let url = URL(string: user.profileImageUrl) else { return }
-        profileImage?.setImage(url: url)
-        profileImageBtn?.setImage(url: url)
-//        if let image = loadedProfileImage.image, let globalUser = globalUser {
-//            if globalUser.uid == user.uid {
-//                profileImage?.image = image
-//                profileImageBtn?.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
-//            } else {
-//                guard let url = URL(string: user.profileImageUrl) else { return }
-//                profileImage?.setImage(url: url)
-//                profileImageBtn?.setImage(url: url)
-//            }
-//        } else {
-//            guard let url = URL(string: user.profileImageUrl) else { return }
-//            profileImage?.setImage(url: url)
-//            profileImageBtn?.setImage(url: url)
-//        }
+        profileImage?.kf.setImage(with: url)
+        profileImageBtn?.kf.setImage(with: url, for: .normal)
+        if let completion = completion {
+            completion()
+        }
     }
     
 }

@@ -35,10 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    public func switchToMainViewController() {
-//        self.window?.rootViewController = main
-    }
-    
     public func switchToMainViewController(user:User) {
         UIApplication.shared.endIgnoringInteractionEvents()
         self.window?.rootViewController = MainTabBarController(user:user)

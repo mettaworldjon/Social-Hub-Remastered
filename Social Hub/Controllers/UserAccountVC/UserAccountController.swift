@@ -15,6 +15,7 @@ class UserAccountController: UITableViewController {
     let cellId = "cellId"
     
     private var user:User?
+    
     func setUser(user:User?) {
         guard let user = user else { return }
         self.user = user

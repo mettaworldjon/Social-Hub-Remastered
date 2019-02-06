@@ -45,6 +45,8 @@ class EditProfileController: UITableViewController {
     // Cell - Registration
     func registerCell() {
         self.tableView.register(EditProfileViewCell.self, forCellReuseIdentifier: cellId)
+        self.tableView.estimatedRowHeight = 44
+        self.tableView.rowHeight = UITableView.automaticDimension
     }
     
     // Cell - Rendering
@@ -103,6 +105,8 @@ class EditProfileController: UITableViewController {
             switch indexPath.row {
             case 0:
                 return 135
+            case 4:
+                return 100
             default:
                 return 44
             }

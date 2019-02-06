@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import Imaginary
 
 class ProfileHeaderCell: UICollectionViewCell {
     
@@ -26,7 +25,16 @@ class ProfileHeaderCell: UICollectionViewCell {
         self.profileType.text = user.profileType
         self.profileBio.text = user.bio
         self.profileWebsite.text = user.website
-        UIViewController.loadProfileImage(user, self.profileImage, nil)
+//        UIViewController.loadProfileImage(user, self.profileImage, nil)
+        UIViewController.loadProfileImage(user, self.profileImage, nil) {
+            UIView.animate(withDuration: 1, animations: {
+                self.profileImage.alpha = 1
+                self.profileName.alpha = 1
+                self.profileType.alpha = 1
+                self.profileBio.alpha = 1
+                self.profileWebsite.alpha = 1
+            })
+        }
     }
     
     // Profile - Image
@@ -37,6 +45,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         image.widthAnchor.constraint(equalToConstant: 70).isActive = true
         image.layer.cornerRadius = 35
         image.clipsToBounds = true
+        image.alpha = 0
         return image
     }()
     
@@ -45,6 +54,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         let name = UILabel()
         name.textColor = UIColor.Theme.textColor
         name.font = .systemFont(ofSize: 18, weight: .bold)
+        name.alpha = 0
         return name
     }()
     
@@ -53,6 +63,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         let name = UILabel()
         name.textColor = UIColor.Theme.gray_79
         name.font = .systemFont(ofSize: 14, weight: .regular)
+        name.alpha = 0
         return name
     }()
     
@@ -105,6 +116,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         bio.textColor = UIColor.Theme.textColor
         bio.font = .systemFont(ofSize: 16, weight: .regular)
         bio.numberOfLines = 0
+        bio.alpha = 0
         return bio
     }()
     
@@ -114,6 +126,7 @@ class ProfileHeaderCell: UICollectionViewCell {
         bio.translatesAutoresizingMaskIntoConstraints = false
         bio.textColor = UIColor.Theme.baseColor
         bio.font = .systemFont(ofSize: 16, weight: .bold)
+        bio.alpha = 0
         return bio
     }()
     

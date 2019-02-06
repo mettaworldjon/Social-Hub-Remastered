@@ -11,6 +11,7 @@ import Firebase
 
 class MainTabBarController: UITabBarController {
     
+    // Set User - Method
     func setUser( _ uid:String) {
         let profile = ProfileController(UICollectionViewLayout.getLayout(.vertical))
         let profilePage = UINavigationController(rootViewController: profile)
@@ -22,15 +23,18 @@ class MainTabBarController: UITabBarController {
         }
     }
     
+    // Set User - Method
     func setUser( _ user:User) {
         self.setUser(user.uid)
     }
     
+    // Init - With User
     convenience init(uid:String) {
         self.init()
         self.setUser(uid)
     }
     
+    // Init - With User
     convenience init(user:User) {
         self.init(uid: user.uid)
     }
@@ -38,8 +42,6 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    
     
     // Add Title into Tab Bar
     fileprivate func configTab( _ image:UIImage,_ nav:UINavigationController, _ title:String) {
