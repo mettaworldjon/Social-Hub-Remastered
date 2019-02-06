@@ -24,8 +24,8 @@ class ProfileController: ContentCollectionController, UICollectionViewDelegateFl
     // Handle User Insertion
     func setUser(user:User) {
         self.user = user
-        self.navigationItem.title = "@\(user.username)"
-        self.collectionView.reloadData()
+        navigationItem.title = "@\(user.username)"
+        collectionView.reloadData()
     }
     
     // ActionSheet - Configuration
@@ -55,9 +55,8 @@ class ProfileController: ContentCollectionController, UICollectionViewDelegateFl
         super.viewDidLoad()
         configureNav()
         configureCollection()
-        
-//        self.navigationController?.tabBarItem.image = #imageLiteral(resourceName: "profile-unselected")
-//        self.navigationController?.tabBarItem.title = "Profile"
+        self.navigationController?.tabBarItem.image = #imageLiteral(resourceName: "profile-unselected")
+        self.navigationController?.tabBarItem.title = "Profile"
     }
     
     // Nav - Configurations

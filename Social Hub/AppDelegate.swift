@@ -16,16 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    fileprivate let mainTabBar = MainTabBarController()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
         projectDefaults()
-        if let uid = Auth.auth().currentUser?.uid {
-            window?.rootViewController = MainTabBarController(uid: uid)
-        } else {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            // Not Signed In
             window?.rootViewController = SignInController()
+            window?.makeKeyAndVisible()
+            return true
         }
+        // Signed In
+        mainTabBar.setUser(uid)
+        window?.rootViewController = mainTabBar
         window?.makeKeyAndVisible()
         return true
     }
@@ -35,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     public func switchToMainViewController(user:User) {
-//        UIApplication.shared.endIgnoringInteractionEvents()
+        UIApplication.shared.endIgnoringInteractionEvents()
         self.window?.rootViewController = MainTabBarController(user:user)
     }
     
